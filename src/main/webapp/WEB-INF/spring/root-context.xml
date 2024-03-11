@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<!-- 스프링 프레임 워크워 관련 된 것은 root(현재파일)에서 당담한다. 업무관련 당담. -->	
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- JDBCTests파일에 넣었던 내용을 가져와서 프로퍼티에 집어 넣는다.  -->
+<!-- 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>  -->
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>		
+		<property name="username" value="webdb"></property>
+		<property name="password" value="12345"></property>
+	</bean>
+	
+	<!-- HikariCP configuration -->
+	<!-- destroy-method="close" 는 끝날떄 닫으라는 명령 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<!-- ref는 참조할 빈 id를 명시 하는 것이다. -->
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>	
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>	
+	
+	<!-- 백단의 java 패키지명에 맞추어 경로 설정 해줄것! -->
+	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	
+<!-- 	<context:component-scan base-package="com.study.erum.sample" /> -->
 </beans>
+
