@@ -1,0 +1,30 @@
+-- CASCADE 옵션을 줄 경우 외래키(Foreign key)로 물린 하위 테이블들 까지 함께 삭제된다.
+
+drop table tbl_board CASCADE CONSTRAINTS; -- 강제 삭제 방법
+
+
+create table tbl_board(
+    bno number(10, 0),
+    title varchar2(200) not null,
+    content varchar2(2000) not null,
+    writer varchar2(50) not null,
+    regdate date default sysdate, 
+    updatedate date default sysdate -- sysdate 현재의 날짜를 저장.
+);
+
+-- primary key 는 인덱스에 생기고 이름을 지정 하면 지정한 이름으로 지정하지 않으면 SYS_C로 만들어진다.
+alter table tbl_board add constraint pk_board
+primary key(bno);
+
+drop sequence seq_board;
+
+-- 시퀀스
+create sequence seq_board;
+
+insert into tbl_board(bno, title, content, writer)
+values(SEQ_BOARD.nextval, '텍스트 제목', '텍스트 내용', 'user00');
+
+select * from tbl_board;
+
+-- 오라클은 반드시 commit을(저장)을 해야만 함.
+commit;
