@@ -1,12 +1,16 @@
 package org.zerock.controller;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.zerock.service.BoardServiceImplTest;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,13 +23,40 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardControllerTests {
 
-  @Setter()
+  @Autowired
   private WebApplicationContext ctx;
   
-  private MockMvc mockMvc; // MockMvc 서버를 구동시키지 않아도 테스트 가능
+  private MockMvc mockMVC; // MockMvc 서버를 구동시키지 않아도 테스트 가능
+  
+  @Before // JUnit으로 import해줄것. /지정한 패턴에 해당하는 메소드가 실행되기 전에, interceptor와 같이 동작하는 것을 의미
+  public void setup() {
+    this.mockMVC = MockMvcBuilders.webAppContextSetup(ctx).build();
+  }
+  
+  @Test
+  public void testList() throws Exception{ // thorows Exception은 예외를 떠넘길떄 사용
+    
+    log.info(
+          mockMVC.perform(MockMvcRequestBuilders.get("/board/list"))
+          .andReturn()
+          .getModelAndView()
+          .getModelMap());
+  }
+  
+  @Test //등록
+  public void testRegister() throws Exception{
+    
+    String resultPage= mockMVC.perform(MockMvcRequestBuilders.post(""
+        + "/board/register")
+        .param("title","테스트 새글 제목--")
+        .param("content", "테스트 새글 내용--")
+        .param("writer", "user00--")
+        ).andReturn().getModelAndView().getViewName();
+    
+         log.info(resultPage);
+  }
+
+
 }
-
-
-
 
 
