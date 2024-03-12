@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @RequestMapping("/board/*")//*는 모든걸 받겠다는 뜻이다.
-@AllArgsConstructor
+@AllArgsConstructor //생성자 자동 주입
 public class BoardController {
 
   @Autowired
