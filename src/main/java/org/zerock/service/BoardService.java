@@ -13,7 +13,7 @@ public interface BoardService {
   
   public boolean modify(BoardVO board);
 
-  public boolean remove(BoardVO board);
+  public boolean remove(Long board);
   
   public List<BoardVO> getList();
   
