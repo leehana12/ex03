@@ -21,6 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- servlet 에는 controller로 해주고 root-context에서는 service를 따로 작성 해준다. -->
 	<context:component-scan base-package="org.zerock.controller" />
 	
 	
