@@ -6,6 +6,7 @@ import org.zerock.domain.BoardVO;
 
 public interface BoardService {
 
+  //CRUD 5개
   public void register(BoardVO boare);
   
   public BoardVO get(Long bno);
