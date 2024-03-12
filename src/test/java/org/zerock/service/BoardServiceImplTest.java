@@ -38,9 +38,22 @@ public class BoardServiceImplTest {
     
     log.info("생성된 게시물 번호 : " + board.getBno());
   }
-  @Test
+  @Test // 목록작업의 구현과 테스트
   public void testGetList() {
     service.getList().forEach(board -> log.info(board));
   }
   
+  @Test //조회 test
+  public void testGet() {
+    
+    log.info(service.get(1L));//1번 확인
+  }
 }
+
+
+
+
+
+
+
+
