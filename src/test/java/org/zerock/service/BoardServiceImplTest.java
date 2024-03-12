@@ -46,17 +46,17 @@ public class BoardServiceImplTest {
   @Test //조회 test
   public void testGet() {
     
-    log.info(service.get(1L));//1번 확인
+    log.info(service.get(12L));//12번 확인
   }
 
-  @Test //조회 test
+  @Test // 삭제
   public void testDelete() {
     
     //게시물 번호의 존재 여부를 확인하고 테스트 할 것
-    log.info("REMOVE RESULT: " + service.remove(2L));//1번 확인
+    log.info("REMOVE RESULT: " + service.remove(12L));//12번 삭제
   }
   
-  @Test //조회 test
+  @Test //수정
   public void testUpdate() {
     
     BoardVO board = service.get(1L);
@@ -65,7 +65,7 @@ public class BoardServiceImplTest {
       return;
     }
     
-    board.setTitle("제목수정합니다.");
+    board.setTitle("제목수정합니다.2");
     log.info("MODIFY RESULT: " + service.modify(board));//1번 확인
   }
 }
