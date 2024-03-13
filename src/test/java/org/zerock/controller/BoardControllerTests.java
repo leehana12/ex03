@@ -57,6 +57,30 @@ public class BoardControllerTests {
   }
 
 
+  @Test //조회 처리 테스트
+  public void testGet() throws Exception {    
+    log.info(
+        mockMVC.perform(MockMvcRequestBuilders
+        .get("/board/get")
+        .param("bno","2"))
+        .andReturn()
+        .getModelAndView()
+        .getModelMap());
+  }
+
+  @Test //수정 처리 테스트
+  public void testModify() throws Exception {    
+    log.info(
+        mockMVC.perform(MockMvcRequestBuilders
+        .post("/board/modify")
+        .param("bno","1")
+        .param("title","수정된 테스트 새글 제목")
+        .param("content","수정된 테스트 새글 내용")
+        .param("write","user00"))
+        .andReturn()
+        .getModelAndView()
+        .getModelMap());
+  }
 }
 
 
