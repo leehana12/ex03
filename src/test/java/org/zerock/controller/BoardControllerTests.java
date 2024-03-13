@@ -43,7 +43,7 @@ public class BoardControllerTests {
           .getModelMap());
   }
   
-  @Test //등록
+  @Test //등록 
   public void testRegister() throws Exception{
     
     String resultPage= mockMVC.perform(MockMvcRequestBuilders.post(""
