@@ -35,6 +35,7 @@
                                 </thead>
 								<c:forEach items="${list}" var="board">
 									<tr>
+										<!-- JSP view페이지를 만들 때 XSS공격 방지를 위해 " <c:out> "을 사용하여 막을 수 있다/보안성 -->
 										<td><c:out value="${board.bno}" /></td>
 										<td><c:out value="${board.title}" /></td>
 										<td><c:out value="${board.writer}" /></td>
