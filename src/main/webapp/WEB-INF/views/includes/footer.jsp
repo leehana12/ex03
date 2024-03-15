@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
             
 
-
     <!-- Bootstrap Core JavaScript -->
     <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -26,7 +25,6 @@
         }); */
     });
     </script>
-
 </body>
 
 </html>
