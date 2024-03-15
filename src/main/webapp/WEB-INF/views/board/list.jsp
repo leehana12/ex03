@@ -39,7 +39,8 @@
 							<tr>
 								<!-- JSP view페이지를 만들 때 XSS공격 방지를 위해 " c:out> "을 사용하여 막을 수 있다/보안성 -->
 								<td><c:out value="${board.bno}" /></td>
-								<td><c:out value="${board.title}" /></td>
+								<td><a href="/board/get?bno=<c:out value="${board.bno}" />">
+								<c:out value="${board.title}" /></a></td>
 								<td><c:out value="${board.writer}" /></td>
 								<!-- regDate와 updateDate를 대소문자 구분을 제대로 안해줄 경우 forEach문이 돌아 가지 않는ㄴ다. -->
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
