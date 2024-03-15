@@ -51,10 +51,10 @@ public class BoardController {
     return "redirect:/board/list";
   }
   
-  @GetMapping
+  @GetMapping({"/get","/modify"})
   public void get(@RequestParam("bno") Long bno, Model model) {
   //@RequestParam 쿼리 스트링을 받아 오는 것. ?bno=5
-    log.info("/get");
+    log.info("/get or modify");
     model.addAttribute("board", service.get(bno));
   }
   
