@@ -28,23 +28,33 @@
 						</div>
 						<div class="form-group">
 							<label>Title</label><input class="form-control" name="title"
-								value="<c:out value="${board.title}" />" readonly="readonly" />
+								value="<c:out value="${board.title}" />" />
 						</div>
 						<div class="form-group">
 							<label>Text area</label>
-							<textarea class="form-control" rows="3" name="content" 
-								readonly="readonly"><c:out value="${board.content}" /></textarea>
+							<textarea class="form-control" rows="3" name="content"><c:out value="${board.content}" /></textarea>
 						</div>
 						<div class="form-group">
 							<label>Writer</label><input class="form-control" name="writer"
 								value="<c:out value="${board.writer}" />" readonly="readonly" />
 						</div>
-						<button data-oper="modify" class="btn btn-default" 
-							onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'" >
+
+						<div class="form-group">
+							<label>RegDate</label><input class="form-control" name="regDate"
+								value="<fmt:formatDate pattern = "yyyy-MM-dd" value="${board.regDate}"/>" readonly="readonly" />
+						</div>
+						<div class="form-group">
+							<label>Update Date</label><input class="form-control" name="updateDate"
+								value="<fmt:formatDate pattern = "yyyy-MM-dd" value="${board.updateDate}"/>" readonly="readonly" />
+						</div>
+						
+						<button type="submit" data-oper="modify" class="btn btn-default">
 							Modify
 						</button>
-						<button data-oper="list" class="btn btn-info" 
-							onclick="location.href='/board/list'" >
+						<button type="submit" data-oper="remove" class="btn btn-danger">
+							remove
+						</button>
+						<button type="submit" data-oper="list" class="btn btn-info">
 							List
 						</button>			
 					</form>
