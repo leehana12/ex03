@@ -91,6 +91,9 @@
 		
 		checkModal(result);
 		
+		//앞으로가기, 뒤로가기를 했을때 게시글등록되었습니다다 뜨지 않도록 초기화 해주는 작업
+		history.replaceState({},null,null);
+		
 		function checkModal(result) {
 			
 			if (result === '') {
